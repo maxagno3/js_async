@@ -1,0 +1,143 @@
+/* ================================================CSS Reset=================================================================== */
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* =====================================================My CSS ============================================================= */
+
+body {
+    background: linear-gradient(180deg, #45aaf2, #4b7bec) no-repeat;
+    color: #fff;
+    /* width: 100%; */
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    font-family: 'Ubuntu Mono', monospace;
+}
+
+.container {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.head-text h2 {
+    padding-top: 370px;
+    font-size: 1.5rem;
+    color: #fff;
+    text-align: center;
+}
+
+.head-text {
+    padding: 1rem 2rem;
+    width: 100%;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
+}
+
+.wrapper {
+    padding: 1rem 2rem;
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* Search and Button */
+.search {
+    box-shadow: 1px 1px 5px #333;
+    display: flex;
+    justify-content: space-around;
+    margin: 2rem 0;
+}
+
+.search > input {
+    background-color: #4b7bec;
+    border: none;
+    color: #fff;
+    font-size: 1rem;
+    padding: 1rem;
+    width: 80%;
+}
+
+.search > button {
+    background-color: #fff;
+    border: none;
+    color: #45aaf2;
+    cursor: pointer;
+    font-size: 1rem;
+    width: 20%;
+}
+
+/* User Card */
+.card {
+    /* border: 1px solid #ddd; */
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 98%;
+    margin-left: 40px;
+}
+
+.card-user {
+    width: 30%;
+}
+
+img {
+    margin: 20px 10px;
+    max-width: 150px;
+    border-radius: 50%;
+}
+
+.card-user-info {
+    width: 68%;
+}
+
+p {
+    margin: 1rem 0;
+}
