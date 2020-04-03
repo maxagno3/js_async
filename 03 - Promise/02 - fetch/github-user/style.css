@@ -145,16 +145,21 @@ i {
 }
 
 /* Repositories */
-.repo-heading {
+.repo-heading, .follower-heading {
     font-size: 28px;
     font-weight: 500;
     margin: 20px 0;
 }
 
 .repo-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    /* justify-content: ; */
+    align-items: flex-start;
     box-shadow: 0 1px 0 0 black;
+}
+
+.repo1, .repo2, .repo3, .repo4, .repo5, .repo-heading {
+    flex-basis: 50%;
 }
 
 .repo-name {

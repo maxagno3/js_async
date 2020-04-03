@@ -2,8 +2,10 @@
 let inputSearch = document.querySelector('input');
 let user = document.querySelector('.flex-user_info')
 let gitAPI = "http://api.github.com/users/"; //name,company,location,image,followers count, following count, repo count,blog(company URL)
+let followerList = document.querySelector('.repo-grid');
 let newObj = {};
 let followerArray = [];
+let repoArray = [];
 
 //From where the data is being taken
 function mainFunction () {
@@ -12,7 +14,7 @@ function mainFunction () {
     if(inputSearch.value.trim()) {
         userName = inputSearch.value;
         fetchData(userName, gitAPI);
-        inputSearch.value = ''
+        inputSearch.value = '';
     }
 }
 
@@ -26,7 +28,7 @@ function fetchData (userName, gitAPI) {
     let getAPI = fetch(gitAPI).then(response => {
         return response.json();
     }).then(userData => {
-        console.log(userData);
+        console.log(userData,"data");
         newObj.name = userData.name;
         newObj.image = userData.avatar_url;
         newObj.login = userData.login;
@@ -38,20 +40,72 @@ function fetchData (userName, gitAPI) {
         newObj.repos = userData.public_repos;
         console.log(newObj)
         createUI(newObj)
+        userName = '';
         })
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     // Followers Data
     let followData = fetch(followersAPI).then(response => {
         return response.json();
-    }).then(userFollowers => console.log(userFollowers));
+    }).then(userFollow => {
+        for (let i=0; i < 5; i++){
+            if(!userFollow[i]) {
+                break;
+            }
+            followerArray.push({ username: userFollow[i].login, followerImage: userFollow[i].avatar_url});
+        }
+    }).then(elem => {
+
+        show({followerArr: followerArray})});
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     //Repo Data
     let repoData = fetch(repoAPI).then(response => {
         return response.json();
-    }).then(userRepo => console.log(userRepo));
+    }).then(userRepo => {
+        for (let i = 0; i < 5; i++) {
+            if (!userRepo[i]) {
+                break;
+            }
+            repoArray.push({ repoName: userRepo[i].name, repoFork: userRepo[i].forks_count });
+        }
+    }).then(elem => {
+        console.log(repoArray);
+        show({ repoArr: repoArray })
+    });
+}
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function show(obj) {
+    for(let key in obj) {
+        newObj[key] = obj[key];
+    }
+    // console.log('check', obj.followerArr && !document.querySelector('.followers-flex').innerHTML.trim());
+
+    if(obj.followerArr && !document.querySelector('.followers-flex').innerHTML.trim()) {
+        
+        for (i=0; i< obj.followerArr.length; i++){
+          let followDiv = document.querySelector(`.follower${i+1}`);
+          
+            followDiv.innerHTML = `<img src="${obj.followerArr[i].followerImage}" alt="no image" class="repo-image">
+            <span class="highlight">${obj.followerArr[i].username}</span>`;
+        }
+        // newObj = {};
+    }
+
+    if (obj.repoArr && !document.querySelector('.repo').innerHTML.trim()) {
+        console.log(newObj.repoArr, 'show2');
+        
+        for (i = 0; i < obj.repoArr.length; i++) {
+        // let class = ".repo" + i;
+            let repoDiv = document.querySelector(`.repo${i + 1}`);
+            console.log(repoDiv, 'repoDiv');
+
+            repoDiv.innerHTML = `<h3 class="repo-name">${obj.repoArr[i].repoName}</h3>
+            <i class="fas fa-code-branch repo-icon"> ${obj.repoArr[i].repoFork}</i>`;
+        }
+    }
+    
 }
 
 
@@ -84,7 +138,6 @@ function createUI (newObj) {
               </div>
 
             </div>`
-
     user.innerHTML = userInfo;
 }
 
